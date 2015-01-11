@@ -7,22 +7,14 @@ if (typeof define !== 'function') { var define = require('amdefine')(module); }
  */
 define(function() {
   return {
-    globals : function() {
-      myObject = {
+    globals : function() { 
+      return {
         name : 'Jory'
       };
-
-      return myObject;
     },
 
     functions : function(flag) {
-      if (flag) {
-        function getValue() { return 'a'; }
-      } else {
-        function getValue() { return 'b'; }
-      }
-
-      return getValue();
+     return flag ? 'a':'b';
     },
 
     parseInt : function(num) {

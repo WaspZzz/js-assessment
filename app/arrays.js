@@ -51,7 +51,7 @@ define(function() {
     },
 
     concat : function(arr1, arr2) {
-
+        
     },
 
     insert : function(arr, item, index) {
@@ -73,7 +73,7 @@ define(function() {
     },
 
     square : function(arr) {
-
+    	return arr.map(function(x){return x*x;})
     },
 
     findAllOccurrences : function(arr, target) {
