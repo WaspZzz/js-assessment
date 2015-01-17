@@ -1,6 +1,16 @@
 if (typeof define !== 'function') { var define = require('amdefine')(module); }
 
 define(function() {
+
+    var coutOfItem = function(arr, item){
+        var counter = 0;
+        for (var i = 0; i <=arr.length - 1; i++) {
+            if(arr[i] === item)
+                counter++;
+        };
+        return counter;
+    }
+
   return {
     indexOf : function(arr, item) {
     	return arr.indexOf(item);
@@ -27,7 +37,11 @@ define(function() {
     },
 
     removeWithoutCopy : function(arr, item) {
-
+        for(var i = arr.length - 1; i >= 0; i--) {
+             if(arr[i] === item) 
+                arr.splice(i, 1);
+        }    
+        return arr;
     },
 
     append : function(arr, item) {
@@ -50,8 +64,8 @@ define(function() {
     	return arr;
     },
 
-    concat : function(arr1, arr2) {
-        
+    concat : function(arr1, arr2) {       
+        return arr1.concat(arr2);
     },
 
     insert : function(arr, item, index) {
@@ -59,17 +73,17 @@ define(function() {
     	return arr;
     },
 
-    count : function(arr, item) {
-    	var counter = 0;
-    	for (var i = 0; i <=arr.length - 1; i++) {
-    		if(arr[i] === item)
-    			counter++;
-    	};
-    	return counter;
+    count : function(arr, item) {    	
+    	return coutOfItem(arr, item);
     },
 
     duplicates : function(arr) {
-
+        var result = [];
+        for (var i = arr.length - 1; i >= 0; i--) {
+            if(coutOfItem(arr, arr[i]) >= 2 && result.indexOf(arr[i]) === -1)
+                result.push(arr[i]);
+        }
+        return result;
     },
 
     square : function(arr) {
@@ -77,7 +91,13 @@ define(function() {
     },
 
     findAllOccurrences : function(arr, target) {
-
+        var result = [], index = -1;
+        while(true) {
+            index = arr.indexOf(target, ++index);
+            if(index === -1) break;
+            result.push(index);
+        }
+        return result;        
     }
   };
 });
